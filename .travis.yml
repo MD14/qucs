@@ -110,11 +110,12 @@ install:
 
   # Install official Qt (184MB)
   # Homebrew Qt binary has no Qt3Support (build from souce takes hours)
+  # Installation is taking more than 10min, use travis_wait to increase to 20min
   - if [[ $OSX ]]; then
       QT_VERSION=4.8.6-1 ;
       curl -L -O http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-mac-${QT_VERSION}.dmg ;
       hdiutil mount qt-opensource-mac-${QT_VERSION}.dmg ;
-      sudo installer -pkg /Volumes/Qt\ 4.8.6/Qt.mpkg -target / ;
+      travis_wait sudo installer -pkg /Volumes/Qt\ 4.8.6/Qt.mpkg -target / ;
       hdiutil unmount /Volumes/Qt\ 4.8.6 ;
     fi
 
