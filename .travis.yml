@@ -116,8 +116,8 @@ install:
       curl -L -O http://download.qt.io/archive/qt/4.8/4.8.6/qt-opensource-mac-${QT_VERSION}.dmg ;
       hdiutil mount qt-opensource-mac-${QT_VERSION}.dmg ;
     fi
-  - myCmd=sudo installer -pkg /Volumes/Qt\ 4.8.6/Qt.mpkg -target / 
-  - if [[ $OSX ]]; then  travis_wait 20 ${myCmd} ; fi
+  - echo "sudo installer -pkg /Volumes/Qt\ 4.8.6/Qt.mpkg -target /" >> run_installer.sh
+  - if [[ $OSX ]]; then  travis_wait 20 run_installer.sh ; fi
   - if [[ $OSX ]]; then  hdiutil unmount /Volumes/Qt\ 4.8.6 ;  fi
 
   # Grab tip of Qucs-Test
